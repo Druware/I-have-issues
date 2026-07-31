@@ -1,0 +1,119 @@
+I Have Issues — Third-Party Notices
+===================================
+
+Copyright (c) 2026 Druware Software Designs. All rights reserved.
+
+This software includes the components below. Their licences are permissive and
+compatible with both options in COPYING, but each carries conditions that apply
+to you under either — chiefly that the notices in this file be reproduced.
+
+If you redistribute this software in binary form, ship this file with it.
+
+
+===============================================================================
+Redistributed with the application
+===============================================================================
+
+-------------------------------------------------------------------------------
+Markdig 1.3.2
+Copyright (c) Alexandre Mutel
+https://github.com/xoofx/markdig
+SPDX-License-Identifier: BSD-2-Clause
+
+Used by the Windows application to parse markdown in issue descriptions, notes,
+resolutions, and comments. Not used by the Apple application.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice,
+       this list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE) ARISING IN ANY
+    WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+    SUCH DAMAGE.
+
+-------------------------------------------------------------------------------
+.NET Runtime and Windows Desktop Runtime
+Copyright (c) .NET Foundation and Contributors
+https://github.com/dotnet/runtime
+SPDX-License-Identifier: MIT
+
+Applies only to a self-contained build of the Windows application, which bundles
+these assemblies. A framework-dependent build does not redistribute them — it
+uses the runtime already installed on the machine — and this notice is then not
+required.
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to
+    deal in the Software without restriction, including without limitation the
+    rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+    sell copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+
+
+===============================================================================
+Used but not redistributed
+===============================================================================
+
+No notice obligation arises from these — they are listed so the full dependency
+surface is on the record.
+
+Build and test only, never shipped:
+
+    xunit 2.9.3                        Apache-2.0   (C) .NET Foundation
+    xunit.runner.visualstudio 3.1.4    Apache-2.0   (C) .NET Foundation
+    Microsoft.NET.Test.Sdk 17.14.1     MIT          (C) Microsoft Corporation
+    coverlet.collector 6.0.4           MIT
+
+Provided by the operating system, referenced by name and never bundled:
+
+    Segoe Fluent Icons, Segoe MDL2 Assets    Microsoft Corporation
+      Icon fonts installed with Windows. The application names them in a font
+      stack and falls back if absent; no font file is included or redistributed.
+
+The Apple application has no third-party dependencies. IssuesKit, on both
+platforms, has none.
+
+
+===============================================================================
+Maintaining this file
+===============================================================================
+
+Re-check it whenever a dependency is added, removed, or upgraded:
+
+    dotnet list apps/Windows/IHaveIssues.slnx package --include-transitive
+
+A dependency is acceptable only if its licence is permissive — GPLv3-compatible
+*and* sublicensable into a proprietary product. Copyleft licences, GPL and LGPL
+alike, would make the commercial option in COPYING unshippable.
+
+Notices here were taken from the package metadata of the pinned versions. Before
+a distribution, confirm each against the upstream project's own licence file at
+the version you ship; a copyright line can gain a year or a contributor between
+releases.
+
+Not reviewed by a lawyer.

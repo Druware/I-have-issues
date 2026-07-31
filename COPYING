@@ -1,0 +1,89 @@
+I Have Issues — Licensing
+=========================
+
+Copyright (c) 2026 Druware Software Designs. All rights reserved.
+
+"Druware" below means Druware Software Designs.
+
+This software is available under two licences. You choose which one you take it
+under; you do not need both, and you do not need permission to choose.
+
+
+1. GNU General Public License, version 3
+----------------------------------------
+
+Free of charge, for any use, including commercial use.
+
+The full text is in the file LICENSE, in this directory. It is the licence that
+applies unless you have signed a commercial agreement with Druware.
+
+What it asks of you, in outline — LICENSE is what actually binds:
+
+  * If you distribute this software, or a work derived from it, you must make
+    the corresponding source available to the people you distribute it to,
+    under the GPLv3.
+  * "Derived from" includes linking your own code against IssuesKit or against
+    the application assemblies, and shipping the result.
+  * You must keep the copyright notices and this licensing information intact,
+    and state what you changed.
+  * There is no warranty.
+
+Running the software, modifying it for your own use, and using it inside your
+organisation are not distribution, and trigger none of the above.
+
+
+2. Commercial licence
+---------------------
+
+For distributing this software, or a work derived from it, without the source
+disclosure the GPLv3 requires — for example, embedding IssuesKit in a closed
+source product.
+
+Terms are negotiated per agreement. Contact:
+
+    dru@druware.com
+
+
+What is covered
+---------------
+
+Everything in this repository authored by Druware, including:
+
+    apps/Apple/      the macOS and iOS application and IssuesKit
+    apps/Windows/    the Windows application and IssuesKit
+
+The `.issues` file format itself is a data format, not software. Documents you
+create with these applications are yours, and nothing here places any condition
+on them.
+
+
+Third-party components
+----------------------
+
+This software includes work by others, under their own licences. Those licences
+are permissive and impose their own conditions — chiefly that their copyright
+notices be reproduced — which apply to you under *either* option above.
+
+See the file NOTICE for the list and the notices you must retain.
+
+
+Contributions
+-------------
+
+Offering both options above requires Druware Software Designs to hold sufficient
+rights in every part of the software. A contribution whose copyright Druware
+does not hold, or has not been licensed broadly enough, cannot be offered under
+the commercial licence — and its presence would prevent that option being
+offered at all.
+
+Contributions are therefore accepted only under an agreement granting Druware
+the rights needed to license the contribution under both options. Raise this
+before opening a pull request.
+
+
+---
+
+This file is a plain-language summary and a pointer, not the licence itself. The
+GPLv3 text in LICENSE governs option 1; a signed agreement governs option 2.
+Where this summary and either of those disagree, they win. It has not been
+reviewed by a lawyer.
