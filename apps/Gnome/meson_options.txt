@@ -1,0 +1,15 @@
+## Build options.
+##
+## There is exactly one, and it exists as an escape hatch rather than a feature:
+## the shared core lives outside this Meson project, and how cleanly Meson
+## reaches out of its own source root has never been tested here (no Meson on
+## the machine this was written on). If the default relative path does not work,
+## point this at libs/issueskit directly:
+##
+##     meson setup build -Dissueskit_dir=/abs/path/to/libs/issueskit
+
+option('issueskit_dir',
+  type: 'string',
+  value: '',
+  description: 'Absolute path to libs/issueskit. Empty means ../../libs/issueskit, relative to this project.',
+)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	The application's GResource bundle.
+
+	It carries the style sheet only. The widget trees are built in code rather
+	than from GtkBuilder .ui templates -- see "Deviations" in README.md for why:
+	nothing in this tree has ever been compiled or run, and a mistyped property
+	name in a .ui file fails at runtime with no compiler to catch it, whereas
+	the same mistake in code is a build error.
+-->
+<gresources>
+	<gresource prefix="/com/druware/IHaveIssues">
+		<file compressed="true">style.css</file>
+	</gresource>
+</gresources>

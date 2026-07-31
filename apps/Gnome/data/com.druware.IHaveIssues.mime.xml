@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	The .issues file type.
+
+	A .issues document IS a JSON file -- a single UTF-8 JSON object, never YAML
+	and never markdown -- so the type is declared as a sub-class of
+	application/json. That means a system with no I Have Issues installed still
+	recognises the file as JSON and offers a text editor, while a system with it
+	installed prefers this app.
+
+	The +json suffix on the type name follows RFC 6839 for the same reason.
+
+	Installed into $datadir/mime/packages/; update-mime-database has to run
+	afterwards, which meson's gnome.post_install() does.
+-->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+	<mime-type type="application/vnd.druware.issues+json">
+		<comment>I Have Issues document</comment>
+		<sub-class-of type="application/json"/>
+		<glob pattern="*.issues"/>
+		<icon name="com.druware.IHaveIssues"/>
+		<generic-icon name="text-x-generic"/>
+	</mime-type>
+</mime-info>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	AppStream metadata. Installed into $datadir/metainfo/.
+
+	NOTE: there are no <screenshots> and no <releases> dates that have been
+	checked against a real build, because this application has never been
+	compiled or run. Both are required for a store listing; see README.md.
+-->
+<component type="desktop-application">
+	<id>com.druware.IHaveIssues</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-3.0-or-later</project_license>
+
+	<name>I Have Issues</name>
+	<summary>A document-based issue tracker for small projects</summary>
+
+	<description>
+		<p>
+			I Have Issues keeps a project's bugs, features, tasks and questions
+			in a single .issues file that lives beside the code and is committed
+			to the same repository. The file is plain JSON, written so that it
+			diffs cleanly in git.
+		</p>
+		<p>Each entry records:</p>
+		<ul>
+			<li>type, priority, status and, once closed, a resolution reason</li>
+			<li>who reported it and when, the area it affects, labels, assignees, a milestone and an estimate</li>
+			<li>a description, steps to reproduce, environment, investigation notes and the resolution</li>
+			<li>comments, relations to other entries, and links to remote trackers</li>
+		</ul>
+		<p>
+			Issues can be pushed to a GitHub repository. The personal access
+			token is kept in the system keyring and is never written into the
+			document, because those files are committed and shared.
+		</p>
+		<p>
+			The same .issues files are read and written by the Apple, Android and
+			Haiku versions of this application.
+		</p>
+	</description>
+
+	<launchable type="desktop-id">com.druware.IHaveIssues.desktop</launchable>
+
+	<provides>
+		<mediatype>application/vnd.druware.issues+json</mediatype>
+	</provides>
+
+	<categories>
+		<category>Development</category>
+		<category>ProjectManagement</category>
+	</categories>
+
+	<keywords>
+		<keyword>issue</keyword>
+		<keyword>bug</keyword>
+		<keyword>tracker</keyword>
+		<keyword>task</keyword>
+	</keywords>
+
+	<url type="homepage">https://github.com/Druware/I-have-issues</url>
+	<url type="bugtracker">https://github.com/Druware/I-have-issues/issues</url>
+
+	<developer id="com.druware">
+		<name>Druware</name>
+	</developer>
+
+	<supports>
+		<control>keyboard</control>
+		<control>pointing</control>
+		<control>touch</control>
+	</supports>
+
+	<!-- The window collapses to a single navigable pane below 600px, so it is
+	     usable at phone widths. -->
+	<requires>
+		<display_length compare="ge">360</display_length>
+	</requires>
+
+	<content_rating type="oars-1.1"/>
+
+	<releases>
+		<release version="1.0.0" date="2026-07-31">
+			<description>
+				<p>First GNOME release.</p>
+			</description>
+		</release>
+	</releases>
+</component>

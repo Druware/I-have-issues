@@ -1,0 +1,15 @@
+# Build artifacts for the GNOME app.
+#
+# Scoped to generated output only. Editor, OS and agent-tooling entries belong
+# at the repository root, not here.
+
+# Meson/Ninja build directories. `build/` is what the README documents;
+# `_build/` is the other common convention.
+build/
+_build/
+
+# Stray object files from an ad-hoc compile.
+*.o
+
+# Tooling output that a configured build tree drops next to the sources.
+compile_commands.json

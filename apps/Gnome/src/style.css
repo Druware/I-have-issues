@@ -1,0 +1,21 @@
+/*
+ * style.css -- the application's own style sheet, bundled into the GResource
+ * and loaded once at startup.
+ *
+ * Deliberately tiny. Everything that can be expressed with a stock libadwaita
+ * style class (.error, .warning, .success, .accent, .dim-label, .card,
+ * .boxed-list, .title-4, .heading) uses that class instead, because those
+ * follow the user's chosen theme and accent colour and these rules do not.
+ */
+
+/* Free-text bodies in the read-only detail pane: a plain wrapped label needs
+   the padding a row would otherwise give it. */
+.ihi-body-text {
+	padding: 6px 12px;
+}
+
+/* The sync result summary. Monospace keeps the "N created, N updated" counts
+   from shifting as they change. */
+.ihi-sync-summary {
+	font-family: monospace;
+}

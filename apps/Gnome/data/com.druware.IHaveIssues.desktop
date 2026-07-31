@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=I Have Issues
+GenericName=Issue Tracker
+Comment=A document-based issue tracker for small projects
+Exec=ihaveissues %U
+Icon=com.druware.IHaveIssues
+Terminal=false
+StartupNotify=true
+Categories=GTK;Development;ProjectManagement;
+Keywords=issue;issues;bug;bugs;tracker;task;
+MimeType=application/vnd.druware.issues+json;
+# Ties the window to this entry under Wayland, so the shell shows the right
+# name and icon. Must equal the GApplication application-id.
+StartupWMClass=com.druware.IHaveIssues
