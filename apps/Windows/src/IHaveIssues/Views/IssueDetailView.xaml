@@ -1,0 +1,227 @@
+<UserControl x:Class="IHaveIssues.Views.IssueDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:p="clr-namespace:IHaveIssues.Presentation">
+
+    <!--
+        A read-only presentation of one issue. Body fields carry markdown and are rendered as such
+        by MarkdownRenderer; the text stays selectable, and links open in the browser.
+    -->
+
+    <UserControl.Resources>
+        <!--
+            Both scroll bars are disabled on purpose: that makes the viewer size itself to its
+            content, so each block grows in the page's own scroll region instead of becoming a small
+            box with its own scroll bar.
+        -->
+        <Style x:Key="SelectableBody" TargetType="FlowDocumentScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="IsSelectionEnabled" Value="True" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+
+        <Style x:Key="MetaLabel" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,16,0" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20,16">
+        <StackPanel MaxWidth="760" HorizontalAlignment="Left" Grid.IsSharedSizeScope="True">
+
+            <!-- MARK: Header card -->
+
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="{Binding DisplayNumber}" Style="{StaticResource CaptionText}" />
+                    <TextBlock Text="{Binding Title}" Style="{StaticResource CardTitleText}" Margin="0,2,0,0" />
+
+                    <Separator Margin="0,14" Background="{DynamicResource CardStrokeColorDefaultBrush}" />
+
+                    <!-- The classification rows read their tint from the issue's own enums. -->
+                    <Grid DataContext="{Binding Issue}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MetaLabel" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Type" Style="{StaticResource MetaLabel}" />
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Style="{StaticResource TypeDot}" Margin="0,0,8,0" />
+                            <TextBlock Text="{Binding Type, Converter={StaticResource EnumDisplayName}}" />
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Priority" Style="{StaticResource MetaLabel}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Margin="0,0,0,8"
+                                   Style="{StaticResource PriorityText}"
+                                   FontSize="14"
+                                   Text="{Binding Priority, Converter={StaticResource EnumDisplayName}}" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Status" Style="{StaticResource MetaLabel}" />
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                                   Margin="0,0,0,8"
+                                   Style="{StaticResource StatusText}"
+                                   Text="{Binding Status, Converter={StaticResource EnumDisplayName}}" />
+                    </Grid>
+
+                    <Grid Visibility="{Binding HasResolutionKind, Converter={StaticResource BoolToVisibility}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MetaLabel" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Resolution" Style="{StaticResource MetaLabel}" />
+                        <TextBlock Grid.Column="1" Margin="0,0,0,8" Text="{Binding ResolutionKindText}" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="MetaLabel" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Reported" Style="{StaticResource MetaLabel}" />
+                        <TextBlock Grid.Column="1" Margin="0,0,0,8" Text="{Binding Reported}" />
+                    </Grid>
+
+                    <ItemsControl ItemsSource="{Binding OptionalMetadata}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="MetaLabel" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Label}" Style="{StaticResource MetaLabel}" />
+                                    <TextBlock Grid.Column="1"
+                                               Margin="0,0,0,8"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding Value}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- MARK: Description -->
+
+            <StackPanel Margin="0,20,0,0"
+                        Visibility="{Binding Description, Converter={StaticResource NotEmptyToVisibility}}">
+                <TextBlock Text="Description" Style="{StaticResource SectionHeaderText}" />
+                <FlowDocumentScrollViewer Style="{StaticResource SelectableBody}"
+                                          p:MarkdownRenderer.Text="{Binding Description}" />
+            </StackPanel>
+
+            <!-- MARK: Steps to reproduce -->
+
+            <StackPanel Margin="0,20,0,0"
+                        Visibility="{Binding Steps, Converter={StaticResource CountToVisibility}}">
+                <TextBlock Text="Steps to Reproduce" Style="{StaticResource SectionHeaderText}" />
+                <ItemsControl ItemsSource="{Binding Steps}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                <TextBlock Text="{Binding Ordinal}"
+                                           MinWidth="24"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <!-- MARK: Environment, notes, resolution -->
+
+            <ItemsControl ItemsSource="{Binding Sections}" Margin="0,20,0,0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,0,0,20">
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource SectionHeaderText}" />
+                            <FlowDocumentScrollViewer Style="{StaticResource SelectableBody}"
+                                                      p:MarkdownRenderer.Text="{Binding Text}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- MARK: Comments -->
+
+            <StackPanel Margin="0,0,0,20"
+                        Visibility="{Binding Comments, Converter={StaticResource CountToVisibility}}">
+                <TextBlock Text="Comments" Style="{StaticResource SectionHeaderText}" />
+                <ItemsControl ItemsSource="{Binding Comments}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,12">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Author}" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Date}"
+                                               Margin="8,0,0,0"
+                                               Style="{StaticResource CaptionText}"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
+                                <FlowDocumentScrollViewer Style="{StaticResource SelectableBody}"
+                                                          Margin="0,2,0,0"
+                                                          p:MarkdownRenderer.Text="{Binding Body}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <!-- MARK: Relations -->
+
+            <StackPanel Margin="0,0,0,20"
+                        Visibility="{Binding Relations, Converter={StaticResource CountToVisibility}}">
+                <TextBlock Text="Related Issues" Style="{StaticResource SectionHeaderText}" />
+                <ItemsControl ItemsSource="{Binding Relations}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                <TextBlock Text="{Binding Kind}"
+                                           MinWidth="110"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                <TextBlock Text="{Binding Target}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <!-- MARK: Remote links -->
+
+            <StackPanel Margin="0,0,0,20"
+                        Visibility="{Binding RemoteLinks, Converter={StaticResource CountToVisibility}}">
+                <TextBlock Text="Remote Links" Style="{StaticResource SectionHeaderText}" />
+                <ItemsControl ItemsSource="{Binding RemoteLinks}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,4">
+                                <TextBlock Visibility="{Binding Url, Converter={StaticResource NullToVisibility}}"
+                                           Text="{Binding Label}" />
+                                <TextBlock Visibility="{Binding Url, Converter={StaticResource NotNullToVisibility}}">
+                                    <Hyperlink NavigateUri="{Binding Url}" RequestNavigate="OnRequestNavigate">
+                                        <Run Text="{Binding Label, Mode=OneWay}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

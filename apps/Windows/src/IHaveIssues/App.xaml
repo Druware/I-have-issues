@@ -1,0 +1,17 @@
+<Application x:Class="IHaveIssues.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ThemeMode="System">
+    <!--
+        ThemeMode="System" selects WPF's built-in Fluent theme and follows the OS light/dark and
+        high-contrast setting, which is the counterpart of the Apple build's use of system semantic
+        colours rather than hard-coded hex.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

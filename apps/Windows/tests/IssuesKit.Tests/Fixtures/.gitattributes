@@ -1,0 +1,4 @@
+# These files are byte-exact ground truth copied from the Apple project: the tests re-encode them
+# and compare the result to the original. Line-ending conversion would corrupt that comparison, so
+# git must check them out exactly as committed.
+* -text

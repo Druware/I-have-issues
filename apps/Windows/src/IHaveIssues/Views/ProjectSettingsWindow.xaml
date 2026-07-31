@@ -1,0 +1,134 @@
+<Window x:Class="IHaveIssues.Views.ProjectSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Project Settings"
+        Width="620"
+        Height="720"
+        MinWidth="480"
+        MinHeight="420"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <DockPanel>
+
+        <Border DockPanel.Dock="Bottom" Style="{StaticResource CommandBar}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel" MinWidth="88" IsCancel="True" Click="OnCancel" />
+                <Button Content="Save" MinWidth="88" Margin="8,0,0,0" IsDefault="True" Click="OnSave" />
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20,16">
+            <StackPanel>
+
+                <TextBlock Text="Project" Style="{StaticResource SectionHeaderText}" />
+
+                <StackPanel Style="{StaticResource FormRow}">
+                    <TextBlock Text="Name" Style="{StaticResource FieldLabel}" />
+                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel Style="{StaticResource FormRow}">
+                    <TextBlock Text="Summary" Style="{StaticResource FieldLabel}" />
+                    <TextBox Text="{Binding Summary, UpdateSourceTrigger=PropertyChanged}"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="64"
+                             VerticalScrollBarVisibility="Auto" />
+                </StackPanel>
+
+                <TextBlock Text="GitHub" Style="{StaticResource SectionHeaderText}" Margin="0,12,0,6" />
+
+                <CheckBox Content="Configure GitHub"
+                          Margin="0,0,0,10"
+                          IsChecked="{Binding IsGitHubConfigured}" />
+
+                <StackPanel Visibility="{Binding IsGitHubConfigured, Converter={StaticResource BoolToVisibility}}">
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Owner" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding GitHubOwner, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Repository" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding GitHubRepository, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Style="{StaticResource FormRow}">
+                        <TextBlock Text="Default labels" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding GitHubLabels, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource FormRow}">
+                        <TextBlock Text="Default assignees" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding GitHubAssignees, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource FormRow}">
+                        <TextBlock Text="Default milestone" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding GitHubMilestone, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Style="{StaticResource FormHelpText}"
+                                   Text="Separate multiple labels or assignees with commas. The personal access token is kept in Windows Credential Manager and is never saved into this document — .issues files are meant to be committed to a repository." />
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock Text="Azure DevOps" Style="{StaticResource SectionHeaderText}" Margin="0,12,0,6" />
+
+                <CheckBox Content="Configure Azure DevOps"
+                          Margin="0,0,0,10"
+                          IsChecked="{Binding IsAzureConfigured}" />
+
+                <StackPanel Visibility="{Binding IsAzureConfigured, Converter={StaticResource BoolToVisibility}}">
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Organization" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding AzureOrganization, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Project" Style="{StaticResource FieldLabel}" />
+                            <TextBox Text="{Binding AzureProject, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Style="{StaticResource FormRow}">
+                        <TextBlock Text="Team" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding AzureTeam, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource FormRow}">
+                        <TextBlock Text="Area path" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding AzureAreaPath, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource FormRow}">
+                        <TextBlock Text="Iteration path" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding AzureIterationPath, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource FormRow}">
+                        <TextBlock Text="Default work item type" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding AzureWorkItemType, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Style="{StaticResource FormHelpText}"
+                                   Text="Team, area path, and iteration path are optional. Credentials stay in Windows Credential Manager." />
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

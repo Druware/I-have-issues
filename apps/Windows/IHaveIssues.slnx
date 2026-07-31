@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/IHaveIssues/IHaveIssues.csproj" />
+    <Project Path="src/IssuesKit/IssuesKit.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/IHaveIssues.UiTests/IHaveIssues.UiTests.csproj" />
+    <Project Path="tests/IssuesKit.Tests/IssuesKit.Tests.csproj" />
+  </Folder>
+</Solution>

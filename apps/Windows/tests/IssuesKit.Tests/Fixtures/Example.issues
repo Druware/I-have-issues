@@ -1,0 +1,204 @@
+{
+  "export" : {
+    "preambleMarkdown" : "# Issues\n\nA running log of known issues, bugs, and feature requests.\n\n## How to use this file\n\n- Add new issues under **Open**, most recent first.\n- Move issues to **Resolved** when closed, noting the fix and date.\n- Use the template below for each entry. Keep IDs sequential (e.g. `#001`).\n\n### Template\n\n```\n### #000 — Short descriptive title\n\n- **Type:** Bug | Feature | Task | Question\n- **Priority:** Low | Medium | High | Critical\n- **Status:** Open | In Progress | Blocked | Resolved\n- **Reported:** YYYY-MM-DD\n- **Reported by:**\n- **Area:** (e.g. Networking, Views, Session)\n\n**Description**\n\nWhat is the problem or request? What is the expected vs. actual behavior?\n\n**Steps to reproduce** (bugs only)\n\n1.\n2.\n3.\n\n**Notes / Investigation**\n\nFindings, related files, or discussion.\n\n**Resolution** (when closed)\n\nWhat was changed, and where. Reference commit/PR if applicable.\n```\n\n---\n"
+  },
+  "integrations" : {
+    "github" : {
+      "defaultAssignees" : [
+        "dru"
+      ],
+      "defaultLabels" : [
+        "triage"
+      ],
+      "defaultMilestone" : "v1.1",
+      "owner" : "openbcm",
+      "repository" : "i-have-issues"
+    }
+  },
+  "issues" : [
+    {
+      "area" : "Views",
+      "assignees" : [
+        "dru"
+      ],
+      "closedAt" : "2026-05-07T16:42:00Z",
+      "comments" : [
+        {
+          "author" : "sam",
+          "body" : "Reproduced on my machine — happens only on a cold launch.",
+          "createdAt" : "2026-05-06T11:20:00Z",
+          "id" : "6C2D9F30-8B15-4A77-9E3C-2D5A1B4F7E88"
+        }
+      ],
+      "createdAt" : "2026-05-01T09:15:00Z",
+      "description" : "Tapping **Login** on the sign-in screen has no effect. No network request is made.",
+      "environment" : "macOS 27.0 (build 27A123), MacBook Pro M3",
+      "estimate" : 3.5,
+      "labels" : [
+        "regression",
+        "ui"
+      ],
+      "milestone" : "v1.0",
+      "notes" : "The action binding was dropped when the view was split into LoginView and LoginForm.",
+      "number" : 1,
+      "priority" : "high",
+      "relations" : [
+        {
+          "issueID" : "A1F4C7D2-5E90-4B3A-8C61-0D2E7F5A9B44",
+          "kind" : "blocks"
+        }
+      ],
+      "remoteLinks" : [
+        {
+          "identifier" : "412",
+          "lastSyncedAt" : "2026-05-07T16:43:00Z",
+          "provider" : "github",
+          "remoteUpdatedAt" : "2026-05-07T16:42:00Z",
+          "url" : "https://github.com/openbcm/i-have-issues/issues/412"
+        }
+      ],
+      "reported" : "2026-05-01T00:00:00Z",
+      "reportedBy" : "dru",
+      "resolution" : "Rebound the action in LoginView and added a regression test.",
+      "resolutionKind" : "fixed",
+      "status" : "resolved",
+      "stepsToReproduce" : [
+        "Launch the app with no saved session",
+        "Enter any credentials",
+        "Tap Login"
+      ],
+      "title" : "Login button does nothing",
+      "type" : "bug",
+      "updatedAt" : "2026-05-07T16:42:00Z",
+      "uuid" : "3B8A0C51-2F44-4E6D-B0A7-1C9E5D4F8A02"
+    },
+    {
+      "area" : "Documents",
+      "assignees" : [
+        "sam",
+        "dru"
+      ],
+      "comments" : [
+
+      ],
+      "createdAt" : "2026-05-04T08:00:00Z",
+      "description" : "Add a CSV export alongside the markdown export so issues can be pasted into a spreadsheet.",
+      "environment" : "",
+      "estimate" : 5,
+      "labels" : [
+        "export"
+      ],
+      "milestone" : "v1.1",
+      "notes" : "Column order should match the markdown metadata bullets.",
+      "number" : 2,
+      "priority" : "medium",
+      "relations" : [
+        {
+          "issueID" : "3B8A0C51-2F44-4E6D-B0A7-1C9E5D4F8A02",
+          "kind" : "blockedBy"
+        }
+      ],
+      "remoteLinks" : [
+
+      ],
+      "reported" : "2026-05-04T00:00:00Z",
+      "reportedBy" : "sam",
+      "resolution" : "",
+      "status" : "inProgress",
+      "stepsToReproduce" : [
+
+      ],
+      "title" : "Export the issue list as CSV",
+      "type" : "feature",
+      "updatedAt" : "2026-05-09T13:05:00Z",
+      "uuid" : "A1F4C7D2-5E90-4B3A-8C61-0D2E7F5A9B44"
+    },
+    {
+      "area" : "Views",
+      "assignees" : [
+
+      ],
+      "comments" : [
+
+      ],
+      "createdAt" : "2026-05-11T18:30:00Z",
+      "description" : "The yellow medium-priority symbol falls below AA contrast on the dark sidebar background.",
+      "environment" : "iOS 27.0, iPhone 17 Pro",
+      "labels" : [
+        "ui",
+        "accessibility"
+      ],
+      "notes" : "",
+      "number" : 3,
+      "priority" : "low",
+      "relations" : [
+
+      ],
+      "remoteLinks" : [
+
+      ],
+      "reported" : "2026-05-11T00:00:00Z",
+      "reportedBy" : "dru",
+      "resolution" : "",
+      "status" : "open",
+      "stepsToReproduce" : [
+
+      ],
+      "title" : "Priority badge is hard to read in Dark Mode",
+      "type" : "bug",
+      "updatedAt" : "2026-05-11T18:30:00Z",
+      "uuid" : "5D7E2A18-9C40-4F6B-A3D5-8E1B0C4F27A9"
+    }
+  ],
+  "labels" : [
+    {
+      "colorHex" : "#D73A4A",
+      "description" : "Worked before, broken now",
+      "name" : "regression"
+    },
+    {
+      "colorHex" : "#1D76DB",
+      "description" : "Presentation and layout",
+      "name" : "ui"
+    },
+    {
+      "colorHex" : "#0E8A16",
+      "description" : "VoiceOver, contrast, Dynamic Type",
+      "name" : "accessibility"
+    },
+    {
+      "description" : "Markdown, CSV, and other output formats",
+      "name" : "export"
+    }
+  ],
+  "milestones" : [
+    {
+      "dueOn" : "2026-06-30T00:00:00Z",
+      "isClosed" : true,
+      "name" : "v1.0"
+    },
+    {
+      "dueOn" : "2026-09-30T00:00:00Z",
+      "isClosed" : false,
+      "name" : "v1.1"
+    }
+  ],
+  "people" : [
+    {
+      "displayName" : "Dru",
+      "email" : "dru@openbcm.com",
+      "handle" : "dru"
+    },
+    {
+      "displayName" : "Sam Rivera",
+      "email" : "sam@openbcm.com",
+      "handle" : "sam"
+    }
+  ],
+  "project" : {
+    "id" : "9E1C4B2A-6D3F-4C8E-9A21-7F0B5D6E1234",
+    "name" : "I Have Issues",
+    "summary" : "A document-based issue tracker for small projects."
+  },
+  "schemaVersion" : 1
+}
