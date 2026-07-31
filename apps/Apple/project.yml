@@ -1,0 +1,92 @@
+name: IHaveIssues
+
+options:
+  bundleIdPrefix: com.openbcm
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "26.0"
+    macOS: "26.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Manual
+    "CODE_SIGN_IDENTITY[sdk=macosx*]": "-"
+    "CODE_SIGN_ENTITLEMENTS[sdk=macosx*]": App/IHaveIssues.entitlements
+
+packages:
+  IssuesKit:
+    path: IssuesKit
+
+targets:
+  IHaveIssues:
+    type: application
+    supportedDestinations: [iOS, macOS]
+    deploymentTarget:
+      iOS: "26.0"
+      macOS: "26.0"
+    sources:
+      - path: App
+    dependencies:
+      - package: IssuesKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.openbcm.IHaveIssues
+        PRODUCT_NAME: IHaveIssues
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        COMBINE_HIDPI_IMAGES: YES
+        "CODE_SIGN_IDENTITY[sdk=macosx*]": "-"
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: "I Have Issues"
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        LSApplicationCategoryType: "public.app-category.developer-tools"
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen: {}
+        UISupportsDocumentBrowser: true
+        LSSupportsOpeningDocumentsInPlace: true
+        UIApplicationSupportsIndirectInputEvents: true
+        # Pinned explicitly: leaving these to the generator's defaults silently changed the
+        # app's supported orientations once already.
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        "UISupportedInterfaceOrientations~ipad":
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UTExportedTypeDeclarations:
+          - UTTypeIdentifier: com.openbcm.issues
+            UTTypeDescription: Issues Document
+            UTTypeConformsTo:
+              - public.json
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - issues
+        # Markdown is not a document type: it is only the target of "Export as Markdown…" and
+        # the source of "Import Legacy Markdown…", which needs the type for its file importer.
+        UTImportedTypeDeclarations:
+          - UTTypeIdentifier: net.daringfireball.markdown
+            UTTypeDescription: Markdown Text
+            UTTypeConformsTo:
+              - public.plain-text
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - md
+                - markdown
+              public.mime-type:
+                - text/markdown
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Issues Document
+            CFBundleTypeRole: Editor
+            LSHandlerRank: Owner
+            LSItemContentTypes:
+              - com.openbcm.issues

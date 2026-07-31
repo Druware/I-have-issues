@@ -1,0 +1,246 @@
+{
+  "export" : {
+    "preambleMarkdown" : "# Issues\n\nA running log of known issues, bugs, and feature requests.\n\n## How to use this file\n\n- Add new issues under **Open**, most recent first.\n- Move issues to **Resolved** when closed, noting the fix and date.\n- Use the template below for each entry. Keep IDs sequential (e.g. `#001`).\n\n### Template\n\n```\n### #000 — Short descriptive title\n\n- **Type:** Bug | Feature | Task | Question\n- **Priority:** Low | Medium | High | Critical\n- **Status:** Open | In Progress | Blocked | Resolved\n- **Reported:** YYYY-MM-DD\n- **Reported by:**\n- **Area:** (e.g. Networking, Views, Session)\n\n**Description**\n\nWhat is the problem or request? What is the expected vs. actual behavior?\n\n**Steps to reproduce** (bugs only)\n\n1.\n2.\n3.\n\n**Notes / Investigation**\n\nFindings, related files, or discussion.\n\n**Resolution** (when closed)\n\nWhat was changed, and where. Reference commit/PR if applicable.\n```\n\n---\n"
+  },
+  "integrations" : {
+
+  },
+  "issues" : [
+    {
+      "area" : "GitHubSyncService",
+      "assignees" : [
+
+      ],
+      "comments" : [
+
+      ],
+      "createdAt" : "2026-07-31T19:30:00Z",
+      "description" : "In `milestoneNumbersIfNeeded`, the GitHub API query uses `per_page=100` but never follows the `Link` header for subsequent pages. Repositories with more than 100 milestones will silently have later ones excluded from the milestone name→number lookup. Any issue whose milestone falls in the unread pages will be synced without a milestone, with no warning to the user.\n",
+      "environment" : "",
+      "labels" : [
+
+      ],
+      "notes" : "GitHubSyncService.swift lines 163–165. GitHub paginates milestone lists; the full set requires following `Link: <url>; rel=\"next\"` until absent.",
+      "number" : 4,
+      "priority" : "medium",
+      "relations" : [
+
+      ],
+      "remoteLinks" : [
+
+      ],
+      "reported" : "2026-07-31T19:30:00Z",
+      "reportedBy" : "Code Review",
+      "resolution" : "",
+      "status" : "open",
+      "stepsToReproduce" : [
+        "Configure a GitHub repository that has more than 100 milestones.",
+        "Assign one of the later milestones (position > 100) to a local issue.",
+        "Sync to GitHub.",
+        "Observe that the synced issue has no milestone set on GitHub."
+      ],
+      "title" : "Milestone lookup silently capped at 100 — no pagination",
+      "type" : "bug",
+      "updatedAt" : "2026-07-31T19:30:00Z",
+      "uuid" : "C3D4E5F6-A7B8-9012-CDEF-012345678902"
+    },
+    {
+      "area" : "IssueDetailView",
+      "assignees" : [
+
+      ],
+      "comments" : [
+
+      ],
+      "createdAt" : "2026-07-31T19:30:00Z",
+      "description" : "In `IssueDetailView`, both `relationsSection` and `remoteLinksSection` enumerate their arrays and use `id: \\.offset` as the SwiftUI list identity. Array position is not a stable identity: if items are reordered SwiftUI cannot track which view corresponds to which datum, causing incorrect animations and potentially stale view state. `Relation` has a stable `issueID`; `RemoteLink` has a stable `provider + identifier` pair. Both should be used instead of the offset.\n",
+      "environment" : "",
+      "labels" : [
+
+      ],
+      "notes" : "IssueDetailView.swift line 230 (relationsSection) and line 263 (remoteLinksSection). stepsToReproduce also uses offset (line 176) but plain strings have no natural ID, so offset is acceptable there.",
+      "number" : 3,
+      "priority" : "low",
+      "relations" : [
+
+      ],
+      "remoteLinks" : [
+
+      ],
+      "reported" : "2026-07-31T19:30:00Z",
+      "reportedBy" : "Code Review",
+      "resolution" : "",
+      "status" : "open",
+      "stepsToReproduce" : [
+
+      ],
+      "title" : "Relations and remote links use array offset as SwiftUI identity",
+      "type" : "bug",
+      "updatedAt" : "2026-07-31T19:30:00Z",
+      "uuid" : "B2C3D4E5-F6A7-8901-BCDE-F01234567891"
+    },
+    {
+      "area" : "GitHubSyncView",
+      "assignees" : [
+
+      ],
+      "comments" : [
+
+      ],
+      "createdAt" : "2026-07-31T19:30:00Z",
+      "description" : "In `GitHubSyncView`, per-issue sync error strings are displayed with `ForEach(result.errors, id: \\.self)`. If two issues produce identical error messages (e.g., both return a 404), SwiftUI receives duplicate IDs in the same list, leading to undefined rendering behavior — typically one row silently disappearing.\n",
+      "environment" : "",
+      "labels" : [
+
+      ],
+      "notes" : "GitHubSyncView.swift line 93. Fix: use `.enumerated()` with `id: \\.offset`, or wrap errors in a small Identifiable struct.",
+      "number" : 2,
+      "priority" : "low",
+      "relations" : [
+
+      ],
+      "remoteLinks" : [
+
+      ],
+      "reported" : "2026-07-31T19:30:00Z",
+      "reportedBy" : "Code Review",
+      "resolution" : "",
+      "status" : "open",
+      "stepsToReproduce" : [
+        "Configure a valid GitHub repository.",
+        "Add two local issues that will both fail to sync with the same error (e.g., label both with a milestone that doesn't exist and trigger a 422 with the same message).",
+        "Sync.",
+        "Observe the Last Sync error list — one row may be missing."
+      ],
+      "title" : "Sync error list misbehaves when two issues produce the same error message",
+      "type" : "bug",
+      "updatedAt" : "2026-07-31T19:30:00Z",
+      "uuid" : "A1B2C3D4-E5F6-7890-ABCD-EF1234567890"
+    },
+    {
+      "area" : "GitHubSyncService",
+      "assignees" : [
+
+      ],
+      "comments" : [
+
+      ],
+      "createdAt" : "2026-07-31T19:30:00Z",
+      "description" : "When a locally-resolved issue has no existing GitHub link, `sync()` calls `createIssue` (POST with `includeState: false` → created as open), then immediately calls `updateIssue` (PATCH with `state: \"closed\"`). GitHub's Issues API accepts `state` in POST requests. The create-then-close pattern fires a spurious \"closed\" event in the repository's activity feed, bumps the remote `updated_at` a second time, and uses an extra API call for every newly-synced resolved issue.\n",
+      "environment" : "",
+      "labels" : [
+
+      ],
+      "notes" : "GitHubSyncService.swift lines 64–68 and `payload(for:milestones:includeState:)` line 133–148. Fix: pass `includeState: true` to `createIssue` and remove the subsequent `updateIssue` call for the resolved-on-create path.",
+      "number" : 5,
+      "priority" : "low",
+      "relations" : [
+
+      ],
+      "remoteLinks" : [
+
+      ],
+      "reported" : "2026-07-31T19:30:00Z",
+      "reportedBy" : "Code Review",
+      "resolution" : "",
+      "status" : "open",
+      "stepsToReproduce" : [
+        "Create a local issue and mark it as resolved.",
+        "Sync to GitHub for the first time.",
+        "Check the repository's activity feed on GitHub.",
+        "Observe two events: issue opened, then immediately closed."
+      ],
+      "title" : "Resolved issues create-then-close on first sync, producing spurious GitHub event",
+      "type" : "bug",
+      "updatedAt" : "2026-07-31T19:30:00Z",
+      "uuid" : "E5F6A7B8-C9D0-1234-EF01-234567890124"
+    },
+    {
+      "area" : "GitHubSyncService",
+      "assignees" : [
+
+      ],
+      "comments" : [
+
+      ],
+      "createdAt" : "2026-07-31T19:30:00Z",
+      "description" : "The sync service only pushes local issues to GitHub. Changes made directly on GitHub — comments, status updates, assignee edits, title changes — are never fetched back into the local document. A bi-directional sync would read each linked issue from `GET /repos/{owner}/{repo}/issues/{number}` and merge remote changes (using `remoteUpdatedAt` for conflict detection).\n",
+      "environment" : "",
+      "labels" : [
+
+      ],
+      "notes" : "GitHubSyncService.swift sync() method. The RemoteLink already stores `remoteUpdatedAt` and `lastSyncedAt` for exactly this purpose — the pull side just hasn't been implemented.",
+      "number" : 6,
+      "priority" : "medium",
+      "relations" : [
+
+      ],
+      "remoteLinks" : [
+
+      ],
+      "reported" : "2026-07-31T19:30:00Z",
+      "reportedBy" : "Code Review",
+      "resolution" : "",
+      "status" : "open",
+      "stepsToReproduce" : [
+
+      ],
+      "title" : "GitHub sync is push-only — remote changes are never pulled back",
+      "type" : "feature",
+      "updatedAt" : "2026-07-31T19:30:00Z",
+      "uuid" : "D4E5F6A7-B8C9-0123-DEF0-123456789013"
+    },
+    {
+      "area" : "Toolbar",
+      "assignees" : [
+
+      ],
+      "comments" : [
+
+      ],
+      "createdAt" : "2026-07-31T18:40:06Z",
+      "description" : "In the default window size, the drop down moves to teh right of the content area.  Visually, problematic.  Move the Add,, Preferences and Sync buttons to the bottom of the navigation list. Leave the Menu in the default position.\n",
+      "environment" : "",
+      "labels" : [
+
+      ],
+      "notes" : "",
+      "number" : 1,
+      "priority" : "medium",
+      "relations" : [
+
+      ],
+      "remoteLinks" : [
+
+      ],
+      "reported" : "2026-07-31T18:40:06Z",
+      "reportedBy" : "Dru",
+      "resolution" : "Moved all sidebar controls (Add, Project Settings, Sync, and Import/Export menu) into a .safeAreaInset(edge: .bottom) bar on the sidebar List. Sidebar toolbar is now empty. Controls sit left-aligned as icon-only borderless buttons with the menu trailing-aligned on the right (ContentView.swift, sidebar computed property).",
+      "status" : "resolved",
+      "stepsToReproduce" : [
+
+      ],
+      "title" : "Import/Export Drop Down  concerns",
+      "type" : "task",
+      "closedAt" : "2026-07-31T19:00:00Z",
+      "resolutionKind" : "fixed",
+      "updatedAt" : "2026-07-31T19:00:00Z",
+      "uuid" : "31361FB1-01B1-4300-8C81-B916C9FF81F2"
+    }
+  ],
+  "labels" : [
+
+  ],
+  "milestones" : [
+
+  ],
+  "people" : [
+
+  ],
+  "project" : {
+    "id" : "2FEA9880-37FD-45C0-9645-8F65AC080811",
+    "name" : "",
+    "summary" : ""
+  },
+  "schemaVersion" : 1
+}
