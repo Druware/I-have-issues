@@ -1,0 +1,53 @@
+/*
+ * IHaveIssues.rdef -- application resources.
+ *
+ * Compiled by `rc` and bound into the executable by makefile-engine.
+ */
+
+resource app_signature "application/x-vnd.Druware-IHaveIssues";
+
+resource app_version {
+	major  = 1,
+	middle = 0,
+	minor  = 0,
+
+	variety = B_APPV_DEVELOPMENT,
+	internal = 0,
+
+	short_info = "I Have Issues",
+	long_info = "I Have Issues - a document-based issue tracker for small projects."
+};
+
+/*
+ * B_SINGLE_LAUNCH: one instance per document, which is what a document-based
+ * app wants -- Tracker sends each opened file to its own launch, and the app
+ * turns each into its own window via RefsReceived.
+ */
+resource app_flags B_SINGLE_LAUNCH;
+
+/*
+ * The document type this app edits. Registering it here is what makes Tracker
+ * offer "I Have Issues" for a .issues file; IHaveIssuesApp::_RegisterFileType()
+ * additionally installs the MIME type itself and its "issues" file extension on
+ * first run.
+ */
+resource file_types message {
+	"types" = "application/x-vnd.Druware-issues"
+};
+
+/*
+ * TODO: NO ICON IS DEFINED.
+ *
+ * A `resource vector_icon` needs a literal HVIF byte array, which can only be
+ * produced by Haiku's Icon-O-Matic (File > Save As > "HVIF RDef"). Writing HVIF
+ * bytes by hand is not something that can be done reliably without the tool, and
+ * a wrong byte array renders as garbage rather than failing to build -- so this
+ * ships with no icon instead of a broken one.
+ *
+ * To add one on a Haiku box:
+ *   1. Draw the icon in Icon-O-Matic.
+ *   2. File > Export As... > "Haiku Vector Icon File" > save as icon.rdef.
+ *   3. Paste its `resource vector_icon` block here, or add the file to RDEFS.
+ *
+ * Until then the app shows the generic application icon, which is cosmetic only.
+ */

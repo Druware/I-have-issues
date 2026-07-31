@@ -1,0 +1,14 @@
+# Build artifacts for the Haiku app.
+#
+# Scoped to generated output only. Editor, OS and agent-tooling entries belong
+# at the repository root, not here.
+#
+# The test suite moved to libs/issueskit/tests; its artifacts are ignored by
+# libs/issueskit/.gitignore.
+
+# makefile-engine output: one directory per architecture and build type,
+# e.g. objects.x86_64-gcc13-release/ -- the linked app lands inside it.
+objects.*/
+
+# Stray object files from an ad-hoc compile.
+*.o
