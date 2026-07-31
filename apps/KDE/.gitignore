@@ -1,0 +1,38 @@
+# Build artifacts for the KDE app.
+#
+# Scoped to generated output only. Editor, OS and agent-tooling entries belong
+# at the repository root, not here.
+
+# Out-of-source CMake build directories.
+build/
+build-*/
+
+# In-source CMake droppings, in case someone configures in the source tree.
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+compile_commands.json
+install_manifest.txt
+*.cmake.in
+
+# AUTOMOC / AUTOUIC / AUTORCC output.
+moc_*.cpp
+moc_*.h
+*_automoc.cpp
+mocs_compilation.cpp
+ui_*.h
+qrc_*.cpp
+*_autogen/
+
+# Compiled output.
+*.o
+*.a
+*.so
+*.so.*
+ihaveissues
+
+# Translation build products (the .po sources are tracked, the .mo/.gmo are not).
+*.mo
+*.gmo

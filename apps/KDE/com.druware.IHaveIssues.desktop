@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=I Have Issues
+GenericName=Issue Tracker
+Comment=A document-based issue tracker for small projects
+Exec=ihaveissues %f
+TryExec=ihaveissues
+Icon=com.druware.IHaveIssues
+Terminal=false
+Categories=Qt;KDE;Development;
+MimeType=application/x-issues;
+StartupNotify=true
+X-DBUS-ServiceName=com.druware.IHaveIssues
+Keywords=issue;bug;tracker;task;

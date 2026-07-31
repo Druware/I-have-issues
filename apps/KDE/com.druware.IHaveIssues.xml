@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    shared-mime-info registration for the .issues document format.
+
+    A .issues file IS JSON, so the type is declared a subclass of
+    application/json: anything that can show JSON can still open one, while this
+    application gets to be the preferred handler.
+
+    The Apple port declares the same thing as the UTI com.openbcm.issues
+    conforming to public.json. There is no cross-platform registry that shares
+    those two declarations; they simply have to agree in spirit.
+
+    After installing, run:  update-mime-database ~/.local/share/mime
+-->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-issues">
+    <comment>Issues document</comment>
+    <sub-class-of type="application/json"/>
+    <glob pattern="*.issues"/>
+    <icon name="com.druware.IHaveIssues"/>
+    <generic-icon name="text-x-generic"/>
+    <magic priority="40">
+      <!-- Every document this app writes begins with "{\n" and carries a
+           "schemaVersion" key; the brace alone is what makes it plausibly JSON,
+           and the glob is what actually identifies it. -->
+      <match type="string" value="{" offset="0"/>
+    </magic>
+  </mime-type>
+</mime-info>

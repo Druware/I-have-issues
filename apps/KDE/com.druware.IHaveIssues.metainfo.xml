@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.druware.IHaveIssues</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+
+  <name>I Have Issues</name>
+  <summary>A document-based issue tracker for small projects</summary>
+
+  <description>
+    <p>
+      I Have Issues keeps a project's bugs, features, tasks and questions in a
+      single .issues file that lives beside the code in git. The format is plain
+      JSON, written deterministically so that saving a document produces a clean
+      diff rather than a rewritten file.
+    </p>
+    <p>
+      Issues are grouped into Open and Resolved, each carrying a type, priority,
+      status, reporter, area, labels, assignees, a milestone, an estimate, and
+      free-text description, reproduction steps, environment, notes and
+      resolution sections. Documents can be exported as Markdown, and legacy
+      hand-written Markdown issue lists can be imported once.
+    </p>
+    <p>
+      Issues can be pushed to a GitHub repository. The push is one-way; the
+      personal access token is kept in the system wallet and is never written
+      into the document.
+    </p>
+    <p>
+      The same .issues files are read and written by the Apple, Android and Haiku
+      versions of this application.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">com.druware.IHaveIssues.desktop</launchable>
+
+  <provides>
+    <binary>ihaveissues</binary>
+  </provides>
+
+  <categories>
+    <category>Development</category>
+  </categories>
+
+  <keywords>
+    <keyword>issue</keyword>
+    <keyword>bug</keyword>
+    <keyword>tracker</keyword>
+  </keywords>
+
+  <mimetypes>
+    <mimetype>application/x-issues</mimetype>
+  </mimetypes>
+
+  <url type="homepage">https://github.com/Druware/I-have-issues</url>
+  <url type="bugtracker">https://github.com/Druware/I-have-issues/issues</url>
+
+  <developer id="com.druware">
+    <name>Druware Software Designs</name>
+  </developer>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="1.0" date="2026-07-31">
+      <description>
+        <p>First KDE release.</p>
+      </description>
+    </release>
+  </releases>
+</component>
