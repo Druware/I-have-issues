@@ -1,0 +1,16 @@
+# Build artifacts for the shared library.
+#
+# Scoped to generated output only. Editor, OS and agent-tooling entries belong
+# at the repository root, not here.
+
+# Test suite binary, and the debug bundle clang leaves beside it on macOS.
+tests/issueskit-tests
+tests/issueskit-tests.dSYM/
+
+# Object files and static libraries from any consumer's build.
+*.o
+*.a
+
+# Out-of-tree build directories a Meson or CMake consumer may create here.
+build/
+builddir/
