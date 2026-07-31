@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Launch theme only. All in-app styling is done by the Compose Material 3 theme
+        in ui/theme; this exists so the window has sane colors before Compose starts.
+    -->
+    <style name="Theme.IHaveIssues" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
