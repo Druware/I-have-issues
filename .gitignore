@@ -61,3 +61,12 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 /apps/Apple/build
+/apps/Windows/.vs
+/apps/Windows/src/IHaveIssues/bin
+/apps/Windows/src/IHaveIssues/obj
+/apps/Windows/src/IssuesKit/bin
+/apps/Windows/src/IssuesKit/obj
+/apps/Windows/tests/IHaveIssues.UiTests/bin
+/apps/Windows/tests/IHaveIssues.UiTests/obj
+/apps/Windows/tests/IssuesKit.Tests/bin
+/apps/Windows/tests/IssuesKit.Tests/obj
