@@ -70,3 +70,7 @@ fastlane/test_output
 /apps/Windows/tests/IHaveIssues.UiTests/obj
 /apps/Windows/tests/IssuesKit.Tests/bin
 /apps/Windows/tests/IssuesKit.Tests/obj
+/apps/Android/.gradle
+/apps/Android/app/build
+/apps/Android/build
+/apps/Android/issueskit/build

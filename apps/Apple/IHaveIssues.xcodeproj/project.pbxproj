@@ -24,15 +24,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		029E633A97518D3E1828745B /* IssuesKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IssuesKit; path = IssuesKit; sourceTree = SOURCE_ROOT; };
+		029E633A97518D3E1828745B /* IssuesKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = IssuesKit; sourceTree = SOURCE_ROOT; };
 		11DCDC827B59D1174FB998D9 /* GitHubSyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSyncView.swift; sourceTree = "<group>"; };
-		1A2FBD4F4EE93BA9A2C0C31C /* IHaveIssues.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = IHaveIssues.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A2FBD4F4EE93BA9A2C0C31C /* IHaveIssues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IHaveIssues.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		437AF6B13020EB7F00AC9CDD /* IHaveIssues-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "IHaveIssues-Info.plist"; sourceTree = "<group>"; };
 		4B07CC3B2CB74B47900A3007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BE9B8CF3EACBFB2DC317BD3 /* IssueRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRowView.swift; sourceTree = "<group>"; };
 		7886934AAD91BDEE28CC02A0 /* IHaveIssuesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHaveIssuesApp.swift; sourceTree = "<group>"; };
 		9F08D4FF2C673CF40745BCF0 /* IssuePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuePresentation.swift; sourceTree = "<group>"; };
 		A7303CF0ACFC7B52B6B64F34 /* IHaveIssues.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IHaveIssues.entitlements; sourceTree = "<group>"; };
-		A8B9239E5BF78ED68D004178 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE88CA43472292F590E0EF79 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B0ECD301FBE369E81BA278A9 /* GitHubSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSyncService.swift; sourceTree = "<group>"; };
 		C4FA9D6473506E708A0D2E62 /* IssueEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueEditView.swift; sourceTree = "<group>"; };
@@ -65,7 +65,6 @@
 				11DCDC827B59D1174FB998D9 /* GitHubSyncView.swift */,
 				A7303CF0ACFC7B52B6B64F34 /* IHaveIssues.entitlements */,
 				7886934AAD91BDEE28CC02A0 /* IHaveIssuesApp.swift */,
-				A8B9239E5BF78ED68D004178 /* Info.plist */,
 				E2C8F9842828A5349C6F18AF /* IssueDetailView.swift */,
 				C4FA9D6473506E708A0D2E62 /* IssueEditView.swift */,
 				9F08D4FF2C673CF40745BCF0 /* IssuePresentation.swift */,
@@ -80,6 +79,7 @@
 		931526CCB46172D086E163E3 = {
 			isa = PBXGroup;
 			children = (
+				437AF6B13020EB7F00AC9CDD /* IHaveIssues-Info.plist */,
 				7FC7FE4B5B37F798FF9ABC7A /* App */,
 				D116F49227448B1EE7DB6D21 /* Packages */,
 				AA2881B03250284400587ABC /* Products */,
@@ -133,11 +133,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-					5BDEF81F6A20226ECE1D4283 = {
-						ProvisioningStyle = Manual;
-					};
-				};
 			};
 			buildConfigurationList = 82C74BFEB5CADE1837FFB112 /* Build configuration list for PBXProject "IHaveIssues" */;
 			developmentRegion = en;
@@ -200,16 +195,44 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				AUTOMATION_APPLE_EVENTS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = App/Info.plist;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = Z44257Z59V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IHaveIssues-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "I Have Issues";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.openbcm.IHaveIssues;
 				PRODUCT_NAME = IHaveIssues;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -357,16 +380,44 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				AUTOMATION_APPLE_EVENTS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = App/Info.plist;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = Z44257Z59V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IHaveIssues-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "I Have Issues";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.openbcm.IHaveIssues;
 				PRODUCT_NAME = IHaveIssues;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
